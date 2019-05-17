@@ -1,3 +1,4 @@
 rootProject.name = 'multi-project'
 include ':library'
 include ':application'
+include ':console'

@@ -3,6 +3,8 @@ bootJar {
 	version = '0.0.1-SNAPSHOT'
 }
 
+// library is a module which is added as a dependency by other modules
+// compile project(':library')
 // Fixing package hello.service does not exist
 // By default, when the bootJar tasks are configured, the jar  are disabled.
 // project can be configured to build both an executable archive and a normal archive at the same time by enabling the jar
@@ -15,6 +17,6 @@ springBoot {
 }
 
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter')
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
