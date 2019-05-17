@@ -17,6 +17,36 @@ plugins {
 
 
 subprojects {
-    task allDeps(type: DependencyReportTask) {}
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 11
     group = 'hello'
+
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        springBootVersion = '2.0.7.RELEASE'
+    }
+
+    dependencyManagement {
+        imports { 
+            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") 
+        }
+    }
+
+    // display dependencies for all subprojects in multi project build
+    // runs dependencies tasks on all subprojects
+    // to remove duplication just run ./gradlew allDeps --configuration testRuntime
+    task allDeps(type: DependencyReportTask) {}
 }
