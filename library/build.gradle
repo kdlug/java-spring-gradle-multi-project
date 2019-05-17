@@ -4,20 +4,29 @@ buildscript {
 	}
 }
 
-plugins {
-	id "io.spring.dependency-management" version "1.0.7.RELEASE"
-}
-
 ext {
 	springBootVersion = '2.0.7.RELEASE'
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-jar {
+bootJar {
 	archiveBaseName = 'multi-project-library'
 	version = '0.0.1-SNAPSHOT'
+}
+
+// Fixing package hello.service does not exist
+// By default, when the bootJar tasks are configured, the jar  are disabled.
+// project can be configured to build both an executable archive and a normal archive at the same time by enabling the jar
+jar {
+	enabled = true
+}
+
+springBoot {
+	mainClassName = 'hello.app.DemoApplication'
 }
 
 sourceCompatibility = '11'
@@ -27,7 +36,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation('org.springframework.boot:spring-boot-starter-web')
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

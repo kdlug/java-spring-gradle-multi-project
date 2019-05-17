@@ -1,18 +1,7 @@
 buildscript {
-	ext {
-		springBootVersion = '2.0.7.RELEASE'
-	}
 	repositories {
 		mavenCentral()
 	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
-}
-
-// important to import spring boot
-plugins {
-	id "io.spring.dependency-management" version "1.0.7.RELEASE"
 }
 
 apply plugin: 'java'
@@ -20,9 +9,13 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-jar {
+bootJar {
 	archiveBaseName = 'multi-project-application'
 	version = '0.0.1-SNAPSHOT'
+}
+
+springBoot {
+	mainClassName = 'hello.app.DemoApplication'
 }
 
 sourceCompatibility = 11
@@ -32,8 +25,16 @@ repositories {
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+
+	implementation('org.springframework.boot:spring-boot-devtools')
+
 	compile project(':library')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
+dependencyManagement {
+	imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }

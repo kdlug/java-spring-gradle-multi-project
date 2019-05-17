@@ -1,0 +1,22 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// important to import spring boot
+plugins {
+    id "io.spring.dependency-management" version "1.0.7.RELEASE"
+}
+
+
+subprojects {
+    task allDeps(type: DependencyReportTask) {}
+    group = 'hello'
+}
