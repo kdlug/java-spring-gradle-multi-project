@@ -1,4 +1,4 @@
 rootProject.name = 'multi-project'
 include ':library'
-include ':application'
+include ':web'
 include ':console'

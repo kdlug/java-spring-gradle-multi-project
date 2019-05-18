@@ -1,4 +1,4 @@
-package hello.app;
+package hello.web;
 
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +13,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoApplication.class)
-public class DemoApplicationTest {
+@SpringBootTest(classes = WebApplication.class)
+public class WebApplicationTest {
     @Autowired
     private WebApplicationContext wac;
 

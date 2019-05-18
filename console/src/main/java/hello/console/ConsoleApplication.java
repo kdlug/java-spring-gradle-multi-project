@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-// Because DemoApplication is inside a different package (hello.app) than MyService (hello.service),
+// Because ConsoleApplication is inside a different package (hello.console) than MyService (hello.service),
 // @SpringBootApplication won’t detect it initially.
 // There are different ways to allow `MyService to be picked up:
 // Import it directly with @Import(MyService.class).
